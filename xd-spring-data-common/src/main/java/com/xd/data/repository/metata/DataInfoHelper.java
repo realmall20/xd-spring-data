@@ -32,11 +32,32 @@ public class DataInfoHelper {
      */
     private static final Map<FieldFunction, String> FUNCTION_COLUMN_MAP = new ConcurrentHashMap<>();
 
+    private static final Map<FieldFunction,Class> FUNCTION_CLASS_MAP=new ConcurrentHashMap<>();
+
     public static EntityInfo getIndexInfo(Class clazz) {
         if (!INDEX_INFO_MAP.containsKey(clazz)) {
             INDEX_INFO_MAP.put(clazz, initIndexInfo(clazz));
         }
         return INDEX_INFO_MAP.get(clazz);
+    }
+
+    /**
+     * 通过函数获取class 类名
+     * @param fn
+     * @return
+     */
+    public static Class getClass(FieldFunction fn){
+        try {
+            if(FUNCTION_CLASS_MAP.containsKey(fn)){
+                return FUNCTION_CLASS_MAP.get(fn);
+            }
+            SerializedLambda serializedLambda = getSerializedLambda(fn);
+            Class cla = Class.forName(serializedLambda.getImplClass().replace("/", "."));
+            FUNCTION_CLASS_MAP.put(fn,cla);
+            return cla;
+        }catch (Exception e){
+            throw new UnsupportedOperationException("method can not find cache key");
+        }
     }
 
     public static String getColumn(FieldFunction fn) {

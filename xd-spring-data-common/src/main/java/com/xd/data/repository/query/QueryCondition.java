@@ -9,7 +9,7 @@ public interface QueryCondition<O> {
      * @param <O>
      * @return
      */
-    public   QueryCondition select(FieldFunction<O, ?>... fields);
+    QueryCondition select(FieldFunction<O, ?>... fields);
 
     /**
      * 判断两者相等
@@ -19,7 +19,7 @@ public interface QueryCondition<O> {
      * @param <F>
      * @return
      */
-    public <F> QueryCondition eq(FieldFunction<O, F> filed, Object value);
+    <F> QueryCondition eq(FieldFunction<O, F> filed, Object value);
 
     /**
      * 判断是否是包含
@@ -29,5 +29,5 @@ public interface QueryCondition<O> {
      * @param <F>
      * @return
      */
-    public <F> QueryCondition in(FieldFunction<O, F> filed, Collection<?> values);
+     <F> QueryCondition in(FieldFunction<O, F> filed, Collection<?> values);
 }
