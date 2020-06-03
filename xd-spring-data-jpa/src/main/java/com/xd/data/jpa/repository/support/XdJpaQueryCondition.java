@@ -26,6 +26,8 @@ public class XdJpaQueryCondition<T> implements QueryCondition<T> {
     }
 
     public <F> QueryCondition eq(FieldFunction<T, F> filed, Object value) {
+
+        builder.equal()
         return null;
     }
 

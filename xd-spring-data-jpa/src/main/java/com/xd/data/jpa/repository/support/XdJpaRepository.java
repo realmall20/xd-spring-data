@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -57,11 +58,13 @@ public class XdJpaRepository<T, ID> implements XdRepository<T, ID> {
             builder.append(id.toString()).append(",");
         }
         builder.replace(builder.length()-1,builder.length(),")");
-        em.createQuery(builder.toString());
+        Query query=em.createQuery(builder.toString());
+        query.executeUpdate();
     }
 
 
     public Iterable<T> findByCondition(QueryCondition condition) {
+
         return null;
     }
 
