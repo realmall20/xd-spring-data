@@ -24,7 +24,6 @@ import java.util.Optional;
  * @author xiaohei
  * @create 2020-05-25 上午10:47
  **/
-@Repository
 @Transactional(readOnly = true)
 public class XdJpaRepository<T, ID> implements XdRepository<T, ID> {
 

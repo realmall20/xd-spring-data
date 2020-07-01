@@ -30,4 +30,6 @@ public interface QueryCondition<O> {
      * @return
      */
      <F> QueryCondition in(FieldFunction<O, F> filed, Collection<?> values);
+
+
 }
