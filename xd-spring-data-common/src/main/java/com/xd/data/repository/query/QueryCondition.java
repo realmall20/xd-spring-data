@@ -1,8 +1,11 @@
 package com.xd.data.repository.query;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface QueryCondition<O> {
+
+     List<ISegment> getCondition();
     /**
      * 查找的字段
      * @param fields

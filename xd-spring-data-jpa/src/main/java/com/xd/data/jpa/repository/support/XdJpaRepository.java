@@ -1,6 +1,8 @@
 package com.xd.data.jpa.repository.support;
 
 import com.xd.data.repository.XdRepository;
+import com.xd.data.repository.query.ISegment;
+import com.xd.data.repository.query.KVCondition;
 import com.xd.data.repository.query.QueryCondition;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +14,11 @@ import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -59,7 +66,22 @@ public class XdJpaRepository<T, ID> implements XdRepository<T, ID> {
 
 
     public Iterable<T> findByCondition(QueryCondition condition) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(getDomainClass());
+        List<ISegment> segments= condition.getCondition();
+        List<Predicate> predicates = new ArrayList();
+        //TODO 转换成 habenate的查询起
+        for(ISegment iSegment:segments){
+            if(iSegment instanceof KVCondition){
+                KVCondition cond=(KVCondition)iSegment;
+                switch (cond.getOperate()){
+                    case EQ:
 
+                        break;
+
+                }
+            }
+        }
         return null;
     }
 
