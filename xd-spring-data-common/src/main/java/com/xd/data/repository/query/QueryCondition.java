@@ -22,6 +22,26 @@ public interface QueryCondition<O> {
     <F> QueryCondition eq(FieldFunction<O, F> filed, Object value);
 
     /**
+     * 大于某个值
+     * @param filed
+     * @param value
+     * @param <F>
+     * @return
+     */
+    <F> QueryCondition gt(FieldFunction<O, F> filed,Object value);
+
+    <F> QueryCondition gte(FieldFunction<O, F> filed,Object value);
+
+    <F> QueryCondition lt(FieldFunction<O, F> filed,Object value);
+
+    <F> QueryCondition lte(FieldFunction<O, F> filed,Object value);
+
+    <F> QueryCondition contains(FieldFunction<O, F> filed,String value);
+
+    <F> QueryCondition start(FieldFunction<O, F> filed,String value);
+
+    <F> QueryCondition end(FieldFunction<O, F> filed,String value);
+    /**
      * 判断是否是包含
      * @param filed
      * @param values
@@ -30,6 +50,8 @@ public interface QueryCondition<O> {
      * @return
      */
      <F> QueryCondition in(FieldFunction<O, F> filed, Collection<?> values);
+
+
 
 
 }
