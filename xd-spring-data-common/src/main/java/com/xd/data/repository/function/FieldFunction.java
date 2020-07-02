@@ -1,4 +1,4 @@
-package com.xd.data.repository.query;
+package com.xd.data.repository.function;
 
 import java.io.Serializable;
 import java.util.function.Function;

@@ -2,7 +2,7 @@ package com.xd.data.repository.metata;
 
 import com.xd.data.repository.anno.DataField;
 import com.xd.data.repository.anno.DataInfo;
-import com.xd.data.repository.query.FieldFunction;
+import com.xd.data.repository.function.FieldFunction;
 import com.xd.data.repository.reflect.PropertyNamer;
 import com.xd.data.repository.reflect.ReflectUtil;
 import com.xd.data.repository.util.StringUtils;

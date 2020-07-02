@@ -2,6 +2,7 @@ package com.xd.data.repository.query;
 
 import com.xd.data.repository.enums.Like;
 import com.xd.data.repository.enums.Operate;
+import com.xd.data.repository.function.FieldFunction;
 
 import java.util.*;
 
