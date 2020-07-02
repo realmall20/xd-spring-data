@@ -70,15 +70,13 @@ public class XdJpaRepository<T, ID> implements XdRepository<T, ID> {
         CriteriaQuery query = builder.createQuery(getDomainClass());
         List<ISegment> segments= condition.getCondition();
         List<Predicate> predicates = new ArrayList();
-        //TODO 转换成 habenate的查询起
+        //TODO 转换成 hibenate
         for(ISegment iSegment:segments){
             if(iSegment instanceof KVCondition){
                 KVCondition cond=(KVCondition)iSegment;
                 switch (cond.getOperate()){
                     case EQ:
-
                         break;
-
                 }
             }
         }
