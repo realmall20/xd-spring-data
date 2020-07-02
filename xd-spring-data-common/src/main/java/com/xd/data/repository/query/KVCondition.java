@@ -1,6 +1,6 @@
 package com.xd.data.repository.query;
 
-import com.xd.data.repository.enums.Operate;
+import com.xd.data.repository.enums.Keyword;
 import com.xd.data.repository.function.FieldFunction;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,5 +15,5 @@ import lombok.Getter;
 public class KVCondition implements ISegment {
     private FieldFunction field;
     private Object value;
-    private Operate operate;
+    private Keyword operate;
 }

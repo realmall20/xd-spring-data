@@ -2,7 +2,10 @@ package com.xd.data.repository.enums;
 
 import com.xd.data.repository.query.ISegment;
 
-public enum Operate implements ISegment {
+/**
+ * 查询的关键字
+ */
+public enum Keyword implements ISegment {
     AND("AND"),
     OR("OR"),
     IN("IN"),
@@ -26,7 +29,7 @@ public enum Operate implements ISegment {
 
     private final String keyword;
 
-    Operate(final String keyword) {
+    Keyword(final String keyword) {
         this.keyword = keyword;
     }
 }

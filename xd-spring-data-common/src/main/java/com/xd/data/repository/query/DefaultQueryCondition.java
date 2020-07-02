@@ -1,7 +1,7 @@
 package com.xd.data.repository.query;
 
 import com.xd.data.repository.enums.Like;
-import com.xd.data.repository.enums.Operate;
+import com.xd.data.repository.enums.Keyword;
 import com.xd.data.repository.function.FieldFunction;
 
 import java.util.*;
@@ -29,34 +29,34 @@ public class DefaultQueryCondition<O> implements QueryCondition<O>{
 
     @Override
     public <F> QueryCondition eq(FieldFunction<O, F> filed, Object value) {
-        KVCondition condition=new KVCondition(filed,value, Operate.EQ);
+        KVCondition condition=new KVCondition(filed,value, Keyword.EQ);
         conditionFieldList.push(condition);
         return this;
     }
 
     public <F> QueryCondition gt(FieldFunction<O, F> filed,Object value){
-        KVCondition condition=new KVCondition(filed,value, Operate.GT);
+        KVCondition condition=new KVCondition(filed,value, Keyword.GT);
         conditionFieldList.push(condition);
         return this;
     }
 
     @Override
     public <F> QueryCondition gte(FieldFunction<O, F> filed, Object value) {
-        KVCondition condition=new KVCondition(filed,value, Operate.GE);
+        KVCondition condition=new KVCondition(filed,value, Keyword.GE);
         conditionFieldList.push(condition);
         return this;
     }
 
     @Override
     public <F> QueryCondition lt(FieldFunction<O, F> filed, Object value) {
-        KVCondition condition=new KVCondition(filed,value, Operate.LT);
+        KVCondition condition=new KVCondition(filed,value, Keyword.LT);
         conditionFieldList.push(condition);
         return this;
     }
 
     @Override
     public <F> QueryCondition lte(FieldFunction<O, F> filed, Object value) {
-        KVCondition condition=new KVCondition(filed,value, Operate.LE);
+        KVCondition condition=new KVCondition(filed,value, Keyword.LE);
         conditionFieldList.push(condition);
         return this;
     }
