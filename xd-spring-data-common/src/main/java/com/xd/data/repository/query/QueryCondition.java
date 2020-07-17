@@ -33,19 +33,19 @@ public interface QueryCondition<O> {
      * @param <F>
      * @return
      */
-    <F> QueryCondition gt(FieldFunction<O, F> filed,Object value);
+    <F> QueryCondition gt(FieldFunction<O, F> filed,Number value);
 
-    <F> QueryCondition gte(FieldFunction<O, F> filed,Object value);
+    <F> QueryCondition gte(FieldFunction<O, F> filed,Number value);
 
-    <F> QueryCondition lt(FieldFunction<O, F> filed,Object value);
+    <F> QueryCondition lt(FieldFunction<O, F> filed,Number value);
 
-    <F> QueryCondition lte(FieldFunction<O, F> filed,Object value);
+    <F> QueryCondition lte(FieldFunction<O, F> filed,Number value);
 
     <F> QueryCondition contains(FieldFunction<O, F> filed,String value);
 
-    <F> QueryCondition start(FieldFunction<O, F> filed,String value);
+    <F> QueryCondition startWith(FieldFunction<O, F> filed, String value);
 
-    <F> QueryCondition end(FieldFunction<O, F> filed,String value);
+    <F> QueryCondition endWith(FieldFunction<O, F> filed, String value);
     /**
      * 判断是否是包含
      * @param filed

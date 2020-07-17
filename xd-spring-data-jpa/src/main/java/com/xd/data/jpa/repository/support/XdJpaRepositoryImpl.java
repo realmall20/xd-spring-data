@@ -1,6 +1,7 @@
 package com.xd.data.jpa.repository.support;
 
 import com.xd.data.repository.XdRepository;
+import com.xd.data.repository.function.FieldLambdaUtil;
 import com.xd.data.repository.query.ISegment;
 import com.xd.data.repository.query.KVCondition;
 import com.xd.data.repository.query.QueryCondition;
@@ -14,10 +15,9 @@ import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,12 +70,33 @@ public class XdJpaRepositoryImpl<T, ID> implements XdRepository<T, ID> {
         CriteriaQuery query = builder.createQuery(getDomainClass());
         List<ISegment> segments= condition.getCondition();
         List<Predicate> predicates = new ArrayList();
-        //TODO 转换成 hibenate
+        Root<T> root = query.from(entityInformation.getJavaType());
+        //TODO 转换成 hibernate
         for(ISegment iSegment:segments){
             if(iSegment instanceof KVCondition){
                 KVCondition cond=(KVCondition)iSegment;
+                String field = FieldLambdaUtil.getCacheKey(cond.getField());
                 switch (cond.getOperate()){
                     case EQ:
+                        Path<?> path = root.get(field);
+                        Predicate predicate= builder.equal(path,cond.getValue());
+                        predicates.add(predicate);
+                        break;
+                    case GE:
+                        Path<Number> pathNumber = root.get(field);
+                        predicates.add(builder.ge(pathNumber,(Number) cond.getValue()));
+                        break;
+                    case GT:
+                        pathNumber = root.get(field);
+                        predicates.add(builder.gt(pathNumber,(Number) cond.getValue()));
+                        break;
+                    case LE:
+                        pathNumber = root.get(field);
+                        predicates.add(builder.le(pathNumber,(Number) cond.getValue()));
+                        break;
+                    case LT:
+                        pathNumber = root.get(field);
+                        predicates.add(builder.lt(pathNumber,(Number) cond.getValue()));
                         break;
                 }
             }
@@ -86,7 +107,6 @@ public class XdJpaRepositoryImpl<T, ID> implements XdRepository<T, ID> {
     public Page<T> findByCondition(QueryCondition condition, Pageable pageable) {
         return null;
     }
-
 
     public Iterable<T> findAll(Sort sort) {
         return null;
