@@ -29,7 +29,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
  * @author xiaohei
  * @create 2020-07-01 下午5:41
  **/
-public class XdMongoRepository<T, ID> implements XdRepository<T, ID> {
+public class XdMongoRepositoryImpl<T, ID> implements XdRepository<T, ID> {
     private final MongoOperations mongoOperations;
     private final MongoEntityInformation<T, ID> entityInformation;
 
@@ -37,7 +37,7 @@ public class XdMongoRepository<T, ID> implements XdRepository<T, ID> {
      * @param metadata        must not be {@literal null}.
      * @param mongoOperations must not be {@literal null}.
      */
-    public XdMongoRepository(MongoEntityInformation<T, ID> metadata, MongoOperations mongoOperations) {
+    public XdMongoRepositoryImpl(MongoEntityInformation<T, ID> metadata, MongoOperations mongoOperations) {
         this.mongoOperations = mongoOperations;
         this.entityInformation = metadata;
     }
@@ -213,7 +213,6 @@ public class XdMongoRepository<T, ID> implements XdRepository<T, ID> {
                         criteria.and(field).is("/" + likeCondition.getValue());
                         break;
                 }
-
             }
         }
         return criteria;

@@ -28,13 +28,13 @@ import java.util.Optional;
  * @create 2020-05-25 上午10:47
  **/
 @Transactional(readOnly = true)
-public class XdJpaRepository<T, ID> implements XdRepository<T, ID> {
+public class XdJpaRepositoryImpl<T, ID> implements XdRepository<T, ID> {
 
     private final JpaEntityInformation<T, ?> entityInformation;
     private final EntityManager em;
     private final PersistenceProvider provider;
 
-    public XdJpaRepository(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
+    public XdJpaRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
 
         Assert.notNull(entityInformation, "JpaEntityInformation must not be null!");
         Assert.notNull(entityManager, "EntityManager must not be null!");
