@@ -9,11 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 @NoRepositoryBean
 public interface XdRepository<T, ID> extends PagingAndSortingRepository<T, ID> {
 
-    /**
-     * 通过id 批量删除数据
-     * @param ids
-     */
-    void deleteById(Iterable<ID> ids);
+
     /**
      * 通过自己定义的condition查找对象
      * @param condition
